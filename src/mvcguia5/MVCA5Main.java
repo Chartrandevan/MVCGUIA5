@@ -9,7 +9,7 @@ package mvcguia5;
  *
  * @author chartrand-e35
  */
-public class MVCGUIA5Main {
+public class MVCA5Main {
 
     /**
      * @param args the command line arguments
