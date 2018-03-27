@@ -31,6 +31,9 @@ public class MCVGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
+        IdDeleteLabel = new javax.swing.JLabel();
         InputPanel = new javax.swing.JPanel();
         enterinfolabel = new javax.swing.JLabel();
         LastNameLabel = new javax.swing.JLabel();
@@ -49,13 +52,39 @@ public class MCVGui extends javax.swing.JFrame {
         AssistsSpn = new javax.swing.JSpinner();
         SavePercentageSpn = new javax.swing.JSpinner();
         GAATxt = new javax.swing.JTextField();
+        SubmitButton = new javax.swing.JButton();
+        ClearButton = new javax.swing.JButton();
+        HeightSpn = new javax.swing.JSpinner();
+        WeightSpn = new javax.swing.JSpinner();
+        HeightLabel = new javax.swing.JLabel();
+        WeightLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        IdEditSpn = new javax.swing.JSpinner();
+        PropChangeCmb = new javax.swing.JComboBox<>();
+        PropSelectLabel = new javax.swing.JLabel();
+        NewValue = new javax.swing.JSpinner();
+        NewValueLabel = new javax.swing.JLabel();
+        EditButton = new javax.swing.JButton();
+        SelectOperationCmb = new javax.swing.JComboBox<>();
+        IdDeleteSpn = new javax.swing.JSpinner();
+        DeleteButton = new javax.swing.JButton();
+        DeleteIdLabel = new javax.swing.JLabel();
         OutputPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        ListSP = new javax.swing.JScrollPane();
+        ListList = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PatientDetailsTextArea = new javax.swing.JTextArea();
+
+        IdDeleteLabel.setText("Id of Delete:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         InputPanel.setBackground(new java.awt.Color(255, 0, 0));
         InputPanel.setBorder(new javax.swing.border.SoftBevelBorder(0));
         InputPanel.setForeground(new java.awt.Color(255, 0, 0));
+        InputPanel.setPreferredSize(new java.awt.Dimension(448, 180));
 
         enterinfolabel.setText("Enter Player Information");
 
@@ -75,9 +104,9 @@ public class MCVGui extends javax.swing.JFrame {
 
         GoPLabel.setText("Goalie or Player:");
 
-        GoPCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Player", "Goalie" }));
+        GoPCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Player", "Goalie" }));
 
-        PositionCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Center", "Right Wing", "Left Wing", "Defence" }));
+        PositionCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Center", "Right Wing", "Left Wing", "Defence" }));
         PositionCmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PositionCmbActionPerformed(evt);
@@ -106,113 +135,308 @@ public class MCVGui extends javax.swing.JFrame {
         SavePercentageSpn = new JSpinner(SPSpnmodel);
 
         GAATxt.setText("eg: 3.04");
+        GAATxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GAATxtActionPerformed(evt);
+            }
+        });
+
+        SubmitButton.setText("Submit");
+        SubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitButtonActionPerformed(evt);
+            }
+        });
+
+        ClearButton.setText("Clear");
+        ClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearButtonActionPerformed(evt);
+            }
+        });
+
+        HeightLabel.setText("Height(cm):");
+
+        WeightLabel.setText("Weight(kg):");
+
+        jLabel1.setText("Id of Edit:");
+
+        PropChangeCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Weight", "Goals", "Assists", "Save %", "GAA" }));
+        PropChangeCmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PropChangeCmbActionPerformed(evt);
+            }
+        });
+
+        PropSelectLabel.setText("Property to be changed");
+
+        NewValueLabel.setText("New Value:");
+
+        EditButton.setText("Edit");
+
+        SelectOperationCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Add", "Edit", "Delete" }));
+        SelectOperationCmb.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                SelectOperationCmbItemStateChanged(evt);
+            }
+        });
+        SelectOperationCmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectOperationCmbActionPerformed(evt);
+            }
+        });
+
+        DeleteButton.setText("Delete");
+
+        DeleteIdLabel.setText("Id of Delete:");
 
         javax.swing.GroupLayout InputPanelLayout = new javax.swing.GroupLayout(InputPanel);
         InputPanel.setLayout(InputPanelLayout);
         InputPanelLayout.setHorizontalGroup(
             InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(enterinfolabel)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InputPanelLayout.createSequentialGroup()
-                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LastNameTxt)
-                    .addComponent(LastNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(FirstNameTxt)
-                    .addComponent(FirstNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(GoPLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(GoPCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PositionCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PositionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(InputPanelLayout.createSequentialGroup()
                 .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GoalsScoredLabel)
-                    .addComponent(GSSpn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AssistsSpn)
-                    .addComponent(AssistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SavePercentageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SavePercentageSpn))
-                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(InputPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(GAALabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(enterinfolabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SelectOperationCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(InputPanelLayout.createSequentialGroup()
+                        .addComponent(GoalsScoredLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GAATxt)))
-                .addGap(93, 93, 93))
+                        .addComponent(AssistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SavePercentageLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(GAALabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(InputPanelLayout.createSequentialGroup()
+                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InputPanelLayout.createSequentialGroup()
+                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(LastNameTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(LastNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(GSSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(InputPanelLayout.createSequentialGroup()
+                                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(FirstNameTxt)
+                                    .addComponent(FirstNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(GoPLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(GoPCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(PositionCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(PositionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(HeightSpn)
+                                    .addComponent(HeightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(WeightSpn)
+                                    .addComponent(WeightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(InputPanelLayout.createSequentialGroup()
+                                .addComponent(AssistsSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SavePercentageSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GAATxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(InputPanelLayout.createSequentialGroup()
+                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(IdEditSpn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PropChangeCmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PropSelectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NewValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                            .addComponent(NewValue))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(InputPanelLayout.createSequentialGroup()
+                                .addComponent(IdDeleteSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DeleteButton))
+                            .addComponent(DeleteIdLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         InputPanelLayout.setVerticalGroup(
             InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(InputPanelLayout.createSequentialGroup()
-                .addComponent(enterinfolabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterinfolabel)
+                    .addComponent(SelectOperationCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FirstNameLabel)
                     .addComponent(PositionLabel)
-                    .addComponent(GoalsScoredLabel)
-                    .addComponent(AssistLabel)
-                    .addComponent(SavePercentageLabel)
-                    .addComponent(GAALabel)
-                    .addComponent(GoPLabel))
+                    .addComponent(GoPLabel)
+                    .addComponent(HeightLabel)
+                    .addComponent(WeightLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FirstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(GoPCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PositionCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GSSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HeightSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WeightSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(GoalsScoredLabel)
+                    .addComponent(AssistLabel)
+                    .addComponent(SavePercentageLabel)
+                    .addComponent(GAALabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AssistsSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GSSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SavePercentageSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GAATxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 69, Short.MAX_VALUE))
+                    .addComponent(GAATxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SubmitButton)
+                    .addComponent(ClearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(PropSelectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NewValueLabel)
+                        .addComponent(DeleteIdLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(IdEditSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PropChangeCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EditButton)
+                        .addComponent(IdDeleteSpn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         OutputPanel.setBorder(new javax.swing.border.SoftBevelBorder(0));
+
+        jButton1.setText("jButton1");
+
+        jButton2.setText("jButton2");
+
+        ListList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        ListSP.setViewportView(ListList);
+
+        PatientDetailsTextArea.setColumns(20);
+        PatientDetailsTextArea.setRows(5);
+        jScrollPane1.setViewportView(PatientDetailsTextArea);
 
         javax.swing.GroupLayout OutputPanelLayout = new javax.swing.GroupLayout(OutputPanel);
         OutputPanel.setLayout(OutputPanelLayout);
         OutputPanelLayout.setHorizontalGroup(
             OutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(OutputPanelLayout.createSequentialGroup()
+                .addComponent(ListSP, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(OutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         OutputPanelLayout.setVerticalGroup(
             OutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGroup(OutputPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(2, 2, 2)
+                .addComponent(jButton1))
+            .addComponent(ListSP, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(InputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(OutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(OutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(InputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OutputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(InputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(OutputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void GAATxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GAATxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GAATxtActionPerformed
+
     private void PositionCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PositionCmbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PositionCmbActionPerformed
+
+    private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SubmitButtonActionPerformed
+
+    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClearButtonActionPerformed
+
+    private void PropChangeCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PropChangeCmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PropChangeCmbActionPerformed
+
+    private void SelectOperationCmbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SelectOperationCmbItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SelectOperationCmbItemStateChanged
+
+    private void SelectOperationCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectOperationCmbActionPerformed
+      if(SelectOperationCmb.getSelectedItem().toString() == "Add"){
+      PropChangeCmb.setEnabled(false);
+      IdEditSpn.setEnabled(false);
+      NewValue.setEnabled(false);
+      EditButton.setEnabled(false);
+      IdDeleteSpn.setEnabled(false);
+      DeleteButton.setEnabled(false);
+      AssistsSpn.setEnabled(true);
+      ClearButton.setEnabled(true);
+      DeleteButton.setEnabled(true);
+      FirstNameTxt.setEnabled(true);
+      GAATxt.setEnabled(true);
+      GSSpn.setEnabled(true);
+      GoPCmb.setEnabled(false);
+      HeightSpn.setEnabled(true);
+      WeightSpn.setEnabled(true);
+      PositionCmb.setEnabled(true);
+      SavePercentageLabel.setEnabled(true);
+      }
+    }//GEN-LAST:event_SelectOperationCmbActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +476,10 @@ public class MCVGui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AssistLabel;
     private javax.swing.JSpinner AssistsSpn;
+    private javax.swing.JButton ClearButton;
+    private javax.swing.JButton DeleteButton;
+    private javax.swing.JLabel DeleteIdLabel;
+    private javax.swing.JButton EditButton;
     private javax.swing.JLabel FirstNameLabel;
     private javax.swing.JTextField FirstNameTxt;
     private javax.swing.JLabel GAALabel;
@@ -260,15 +488,37 @@ public class MCVGui extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> GoPCmb;
     private javax.swing.JLabel GoPLabel;
     private javax.swing.JLabel GoalsScoredLabel;
+    private javax.swing.JLabel HeightLabel;
+    private javax.swing.JSpinner HeightSpn;
+    private javax.swing.JLabel IdDeleteLabel;
+    private javax.swing.JSpinner IdDeleteSpn;
+    private javax.swing.JSpinner IdEditSpn;
     private javax.swing.JPanel InputPanel;
     private javax.swing.JLabel LastNameLabel;
     private javax.swing.JTextField LastNameTxt;
+    private javax.swing.JList<String> ListList;
+    private javax.swing.JScrollPane ListSP;
+    private javax.swing.JSpinner NewValue;
+    private javax.swing.JLabel NewValueLabel;
     private javax.swing.JPanel OutputPanel;
+    private javax.swing.JTextArea PatientDetailsTextArea;
     private javax.swing.JComboBox<String> PositionCmb;
     private javax.swing.JLabel PositionLabel;
+    private javax.swing.JComboBox<String> PropChangeCmb;
+    private javax.swing.JLabel PropSelectLabel;
     private javax.swing.JLabel SavePercentageLabel;
     private javax.swing.JSpinner SavePercentageSpn;
+    private javax.swing.JComboBox<String> SelectOperationCmb;
+    private javax.swing.JButton SubmitButton;
+    private javax.swing.JLabel WeightLabel;
+    private javax.swing.JSpinner WeightSpn;
     private javax.swing.JLabel enterinfolabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     // End of variables declaration//GEN-END:variables
 
 }
