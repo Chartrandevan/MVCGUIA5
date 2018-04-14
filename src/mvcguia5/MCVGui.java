@@ -173,7 +173,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
 
         jLabel1.setText("Id of Edit:");
 
-        PropChangeCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Weight", "Goals", "Assists", "Save %", "GAA" }));
+        PropChangeCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Weight", "Goals", "Assists", "Save %" }));
         PropChangeCmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PropChangeCmbActionPerformed(evt);
@@ -185,6 +185,11 @@ protected DefaultListModel HPListModel = new DefaultListModel();
         NewValueLabel.setText("New Value:");
 
         EditButton.setText("Edit");
+        EditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButtonActionPerformed(evt);
+            }
+        });
 
         SelectOperationCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Add", "Edit", "Delete" }));
         SelectOperationCmb.addItemListener(new java.awt.event.ItemListener() {
@@ -594,14 +599,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
     }//GEN-LAST:event_LoadbtnActionPerformed
 
     private void OutputHPListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OutputHPListFocusGained
-      int si;
-      si = OutputHPList.getSelectedIndex();
-        if(c.HPList.get(si).isPlayer()==true){
-         jTextArea1.setText(c.HPList.get(si).PlayerOutput((Player) c.HPList.get(si)));   
-        }//end if
-        else if (c.HPList.get(si).isPlayer()==false){
-          jTextArea1.setText(c.HPList.get(si).GoalieOutput((Goalie) c.HPList.get(si)));     
-        }
+     this.OuttoTexta(OutputHPList.getSelectedIndex());
     
         
     }//GEN-LAST:event_OutputHPListFocusGained
@@ -611,16 +609,13 @@ protected DefaultListModel HPListModel = new DefaultListModel();
     }//GEN-LAST:event_SavebtnActionPerformed
 
     private void OutputHPListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OutputHPListMouseReleased
-        int si;
-      si = OutputHPList.getSelectedIndex();
-        if(c.HPList.get(si).isPlayer()==true){
-         jTextArea1.setText(c.HPList.get(si).PlayerOutput((Player) c.HPList.get(si)));   
-        }//end if
-        else if (c.HPList.get(si).isPlayer()==false){
-          jTextArea1.setText(c.HPList.get(si).GoalieOutput((Goalie) c.HPList.get(si)));     
-        }
+     this.OuttoTexta(OutputHPList.getSelectedIndex()); 
     
     }//GEN-LAST:event_OutputHPListMouseReleased
+
+    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
+       c.EditProperty((int)IdEditSpn.getValue(), PropChangeCmb.getSelectedItem().toString(), (int)NewValue.getValue());
+    }//GEN-LAST:event_EditButtonActionPerformed
 
     private void resetInputs(){
         IdEditSpn.setValue(0);
@@ -644,6 +639,17 @@ protected DefaultListModel HPListModel = new DefaultListModel();
 		this.c = c;
 	} // end addController
     
+    
+    protected void OuttoTexta(int s){
+           int si;
+      si = s;
+        if(c.HPList.get(si).isPlayer()==true){
+         jTextArea1.setText(c.HPList.get(si).PlayerOutput((Player) c.HPList.get(si)));   
+        }//end if
+        else if (c.HPList.get(si).isPlayer()==false){
+          jTextArea1.setText(c.HPList.get(si).GoalieOutput((Goalie) c.HPList.get(si)));     
+        }
+    }
     protected void loadHPListModel(ArrayList<HockeyPlayer> list){
 		for(HockeyPlayer p: list)
 			HPListModel.addElement(p);

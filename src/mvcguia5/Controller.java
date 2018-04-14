@@ -95,9 +95,26 @@ import mvcguia5.objects.Player;
           
         protected void DeleteObject(int i){
          //   System.out.print("size of array : " + HPList.size());
-         this.HPList.remove(i+1);
+         this.HPList.remove(i-1);
         }  
           
+        protected void EditProperty(int i, String p, int nv){//Weight, Goals, Assists, Save %
+        i = i-1;
+        if (p.equals("Weight")){
+        this.HPList.get(i).setWeight(nv);
+        } 
+        else if (p.equals("Goals")){
+          ((Player)this.HPList.get(i)).setGoals(nv);
+        }
+        else if (p.equals("Assists")){
+         ((Player)this.HPList.get(i)).setAssists(nv);
+        }
+        else if (p.equals("Save %")){
+        ((Goalie)this.HPList.get(i)).setSavePercentage(nv);
+        }  
+        System.out.println("property editted");
+        ui.OuttoTexta(i);
+        }
           
         protected void PlayerSubmitted(String fn, String ln, String Gop, String position, int h, int w, int goals, int a){
            System.out.print("Player Submitted");
