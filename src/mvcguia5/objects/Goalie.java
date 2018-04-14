@@ -13,7 +13,7 @@ public class Goalie extends HockeyPlayer {
      private int nextId = 1000;
      private int id;
      private int savePercentage;
-     private String gaa;
+     private double gaa;
      private String firstName;
      private String lastName;
      
@@ -23,8 +23,8 @@ public class Goalie extends HockeyPlayer {
  id = nextId ++ ;   
    }//end of default constructor 
     
-   public  Goalie (String l, String f, int h, int w, int s, String g){
-       super(l, f, h, w);
+   public  Goalie (String l, String f, String Gop, int h, int w, int s, double g){
+       super(l, f, Gop, h, w);
        savePercentage = s;
        gaa = g;
                
@@ -36,7 +36,7 @@ public class Goalie extends HockeyPlayer {
     }
 
     public double getGaa() {
-        return Double.parseDouble(gaa);
+        return (gaa);
     }
   //******Setters***** 
 
@@ -44,7 +44,10 @@ public class Goalie extends HockeyPlayer {
         this.savePercentage = savePercentage;
     }
 
-    public void setGaa(String gaa) {
-        this.gaa = gaa;
+    public void setGaa(String ngaa) {
+        this.gaa = Double.parseDouble(ngaa);
     }
+    
+    
+    
 }

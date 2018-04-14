@@ -32,7 +32,7 @@ import mvcguia5.objects.Player;
  	// ********** instance variable **********
 	 
 	 private MCVGui ui;
-	 private ArrayList<HockeyPlayer> HPList = new ArrayList();
+	 ArrayList<HockeyPlayer> HPList = new ArrayList();
 	 
  	
  	// ********** constructors ***********
@@ -52,9 +52,9 @@ import mvcguia5.objects.Player;
 	} // end addUI
 
          
-          protected void writePatientList(){
+          protected void writeHPList(){
 		 try{
-			 FileOutputStream fos = new FileOutputStream("patients.tmp");
+			 FileOutputStream fos = new FileOutputStream("HP.tmp");
 			 ObjectOutputStream oos = new ObjectOutputStream(fos);
 			 
 			 oos.writeObject(HPList);
@@ -65,15 +65,52 @@ import mvcguia5.objects.Player;
 		 } // end catch io exception
 		 
 	 } // end writePatientList
-        public void PlayerSubmitted(String fn, String ln, String position, int h, int w, int goals, int a){
-           
-          Player p = new Player(fn, ln, position, h, w, goals, a);
+          
+ 
+          
+          protected void getHPList(){
+		 try{
+			 FileInputStream fis = new FileInputStream("HP.tmp");
+			 ObjectInputStream ois = new ObjectInputStream(fis);
+			 
+			 try{
+				 HPList = (ArrayList<HockeyPlayer>)ois.readObject();
+			 } // end try to read patient list from disk
+			 catch(ClassNotFoundException e){
+				 
+			 } // end catch class not found
+		 } // end try to open streams
+		 catch(IOException e){
+			 
+		 } // end catch IOException
+		 
+		 /**
+		  * the array list has been retrieved from disk but
+		  * the patient records are not yet in the list model
+		  */
+		 
+		 ui.loadHPListModel(HPList);
+		 
+	 } // end getPatientList
+          
+        protected void DeleteObject(int i){
+         //   System.out.print("size of array : " + HPList.size());
+         this.HPList.remove(i+1);
+        }  
+          
+          
+        protected void PlayerSubmitted(String fn, String ln, String Gop, String position, int h, int w, int goals, int a){
+           System.out.print("Player Submitted");
+          Player p = new Player(fn, ln, Gop, position, h, w, goals, a);
           HPList.add(p);
           ui.HPListModel.addElement(p);
          }
-        
-         protected void loadListButtonClicked(HockeyPlayer p){
-		 int nid = p.getId();
-		 p.setNextId(++nid);
-	 } // end loadListButtonClicked
+       
+        protected void GoalieSubmitted(String fn, String ln, String Gop, int h, int w, int s, double gaa){
+           System.out.print("Goalie Submitted");
+          Goalie g = new Goalie(fn, ln, Gop, h, w, s, gaa);
+          HPList.add(g);
+          ui.HPListModel.addElement(g);
+         }
+  
  }  // end class

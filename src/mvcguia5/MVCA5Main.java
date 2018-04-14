@@ -22,6 +22,7 @@ public class MVCA5Main {
 		
 		UI.addController(controller);  // register controller with view
 		controller.addUI(UI);			// register view with controller
+   System.out.println("end of processing");  
     }
-    
+     
 }

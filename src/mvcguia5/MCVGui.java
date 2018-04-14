@@ -5,12 +5,15 @@
  */
 package mvcguia5;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import mvcguia5.objects.Goalie;
 import mvcguia5.objects.HockeyPlayer;
+import mvcguia5.objects.Player;
 
 /**
  *
@@ -78,8 +81,8 @@ protected DefaultListModel HPListModel = new DefaultListModel();
         Savebtn = new javax.swing.JButton();
         ListSP = new javax.swing.JScrollPane();
         OutputHPList = new javax.swing.JList<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        PatientDetailsTextArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         IdDeleteLabel.setText("Id of Delete:");
 
@@ -202,7 +205,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
             }
         });
 
-        DeleteIdLabel.setText("Id of Delete:");
+        DeleteIdLabel.setText("Index of Delete:");
 
         javax.swing.GroupLayout InputPanelLayout = new javax.swing.GroupLayout(InputPanel);
         InputPanel.setLayout(InputPanelLayout);
@@ -276,14 +279,14 @@ protected DefaultListModel HPListModel = new DefaultListModel();
                             .addComponent(NewValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                             .addComponent(NewValue))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(InputPanelLayout.createSequentialGroup()
-                                .addComponent(IdDeleteSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DeleteButton))
-                            .addComponent(DeleteIdLabel))))
+                                .addComponent(EditButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(IdDeleteSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(DeleteIdLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeleteButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         InputPanelLayout.setVerticalGroup(
@@ -344,14 +347,36 @@ protected DefaultListModel HPListModel = new DefaultListModel();
         OutputPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Loadbtn.setText("Load");
+        Loadbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoadbtnActionPerformed(evt);
+            }
+        });
 
         Savebtn.setText("Save");
+        Savebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SavebtnActionPerformed(evt);
+            }
+        });
 
+        OutputHPList.setModel(HPListModel);
+        OutputHPList.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                OutputHPListFocusGained(evt);
+            }
+        });
+        OutputHPList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                OutputHPListMouseReleased(evt);
+            }
+        });
         ListSP.setViewportView(OutputHPList);
 
-        PatientDetailsTextArea.setColumns(20);
-        PatientDetailsTextArea.setRows(5);
-        jScrollPane1.setViewportView(PatientDetailsTextArea);
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout OutputPanelLayout = new javax.swing.GroupLayout(OutputPanel);
         OutputPanel.setLayout(OutputPanelLayout);
@@ -363,8 +388,8 @@ protected DefaultListModel HPListModel = new DefaultListModel();
                 .addGroup(OutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Loadbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Savebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         OutputPanelLayout.setVerticalGroup(
             OutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +399,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
                 .addGap(2, 2, 2)
                 .addComponent(Loadbtn))
             .addComponent(ListSP, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane2)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -399,6 +424,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void GAATxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GAATxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GAATxtActionPerformed
@@ -413,12 +439,23 @@ protected DefaultListModel HPListModel = new DefaultListModel();
     int w = (int) WeightSpn.getValue(); 
     int goals = (int) GSSpn.getValue(); 
     int a = (int) AssistsSpn.getValue();
+    String Gop = GoPCmb.getSelectedItem().toString();
     String fn = FirstNameTxt.getText();
     String ln = LastNameTxt.getText();
     String positon = PositionCmb.getSelectedItem().toString();
-   c.PlayerSubmitted(fn, ln, positon, h, w, goals, a);
+   c.PlayerSubmitted(fn, ln, Gop, positon, h, w, goals, a);
     }
    
+    else if(GoPCmb.getSelectedItem().toString() == "Goalie"){
+    int h = (int) HeightSpn.getValue();  
+    int w = (int) WeightSpn.getValue(); 
+    int s = (int) SavePercentageSpn.getValue();
+    double gaa = Double.parseDouble(GAATxt.getText());
+    String fn = FirstNameTxt.getText();
+    String ln = LastNameTxt.getText();
+    String Gop = GoPCmb.getSelectedItem().toString();
+    c.GoalieSubmitted(fn, ln, Gop, h, w, s, gaa);
+    }
         
         
      resetInputs();
@@ -448,7 +485,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
       ClearButton.setEnabled(true);
       DeleteButton.setEnabled(false);
       FirstNameTxt.setEnabled(true);
-      FirstNameTxt.setEnabled(true);
+      LastNameTxt.setEnabled(true);
       GAATxt.setEnabled(true);
       GSSpn.setEnabled(true);
       GoPCmb.setEnabled(true);
@@ -524,7 +561,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
     }//GEN-LAST:event_SelectOperationCmbActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        // TODO add your handling code here:
+          c.DeleteObject((int) IdDeleteSpn.getValue());
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void GoPCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoPCmbActionPerformed
@@ -551,6 +588,39 @@ protected DefaultListModel HPListModel = new DefaultListModel();
        }
            
     }//GEN-LAST:event_GoPCmbActionPerformed
+
+    private void LoadbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadbtnActionPerformed
+    c.getHPList();
+    }//GEN-LAST:event_LoadbtnActionPerformed
+
+    private void OutputHPListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_OutputHPListFocusGained
+      int si;
+      si = OutputHPList.getSelectedIndex();
+        if(c.HPList.get(si).isPlayer()==true){
+         jTextArea1.setText(c.HPList.get(si).PlayerOutput((Player) c.HPList.get(si)));   
+        }//end if
+        else if (c.HPList.get(si).isPlayer()==false){
+          jTextArea1.setText(c.HPList.get(si).GoalieOutput((Goalie) c.HPList.get(si)));     
+        }
+    
+        
+    }//GEN-LAST:event_OutputHPListFocusGained
+
+    private void SavebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavebtnActionPerformed
+       c.writeHPList();
+    }//GEN-LAST:event_SavebtnActionPerformed
+
+    private void OutputHPListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OutputHPListMouseReleased
+        int si;
+      si = OutputHPList.getSelectedIndex();
+        if(c.HPList.get(si).isPlayer()==true){
+         jTextArea1.setText(c.HPList.get(si).PlayerOutput((Player) c.HPList.get(si)));   
+        }//end if
+        else if (c.HPList.get(si).isPlayer()==false){
+          jTextArea1.setText(c.HPList.get(si).GoalieOutput((Goalie) c.HPList.get(si)));     
+        }
+    
+    }//GEN-LAST:event_OutputHPListMouseReleased
 
     private void resetInputs(){
         IdEditSpn.setValue(0);
@@ -579,7 +649,7 @@ protected DefaultListModel HPListModel = new DefaultListModel();
 			HPListModel.addElement(p);
 		
 		
-		c.loadListButtonClicked(list.get(list.size() - 1));
+		
 		
 	} // end loadPatientListModel
     /**
@@ -646,7 +716,6 @@ protected DefaultListModel HPListModel = new DefaultListModel();
     private javax.swing.JLabel NewValueLabel;
     private javax.swing.JList<String> OutputHPList;
     private javax.swing.JPanel OutputPanel;
-    private javax.swing.JTextArea PatientDetailsTextArea;
     private javax.swing.JComboBox<String> PositionCmb;
     private javax.swing.JLabel PositionLabel;
     private javax.swing.JComboBox<String> PropChangeCmb;
@@ -660,9 +729,10 @@ protected DefaultListModel HPListModel = new DefaultListModel();
     private javax.swing.JSpinner WeightSpn;
     private javax.swing.JLabel enterinfolabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
 }

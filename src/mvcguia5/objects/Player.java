@@ -20,8 +20,8 @@ public class Player extends HockeyPlayer {
  id = nextId ++ ; 
    }//end of deafualt constructer
    
-   public Player(String l, String f, String p, int h, int w, int g, int a){
-    super(l, f, h, w);
+   public Player(String l, String f, String Gop, String p, int h, int w, int g, int a){
+    super(l, f, Gop, h, w);
     goals = g;
     assists = a;
     position = p;
@@ -39,6 +39,10 @@ public class Player extends HockeyPlayer {
         return position;
     }
     
+    public int getPoints(){
+      return this.getAssists()+ this.getGoals();
+    }
+    
    //*****Setters******
 
     public void setPosition(String position) {
@@ -54,10 +58,6 @@ public class Player extends HockeyPlayer {
         this.assists = assists;
     }
    
-   public String toString(){
-       String s;
-       s = ("ID = " + this.getId() + this.getFirstName() + " " + this.getLastName());
-          return s;
-   } 
+  
     
 }
