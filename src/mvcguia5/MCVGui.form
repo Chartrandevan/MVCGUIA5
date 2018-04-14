@@ -49,7 +49,7 @@
               <Component id="InputPanel" min="-2" pref="217" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="OutputPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,7 +89,7 @@
                           <Component id="AssistLabel" min="-2" pref="46" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="SavePercentageLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="GAALabel" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -132,16 +132,15 @@
                                       <Component id="WeightSpn" max="32767" attributes="0"/>
                                       <Component id="WeightLabel" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="AssistsSpn" min="-2" pref="46" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SavePercentageSpn" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="SavePercentageSpn" min="-2" pref="46" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="GAATxt" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="SubmitButton" max="32767" attributes="0"/>
+                                  <Component id="SubmitButton" min="-2" pref="127" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="ClearButton" min="-2" pref="68" max="-2" attributes="0"/>
                               </Group>
@@ -173,10 +172,9 @@
                               </Group>
                               <Component id="DeleteIdLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -306,6 +304,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GoPCmbActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -331,17 +332,17 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="GSSpn">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int GSSpnmin = 0;&#xa;    int GSSpnmax = 1000;&#xa;    int GSSpnstep = 5;&#xa;    int GSSpninitValue = 50;&#xa;    SpinnerModel GSSpnmodel = new SpinnerNumberModel(GSSpninitValue, GSSpnmin, GSSpnmax, GSSpnstep);&#xa;GSSpn = new JSpinner(GSSpnmodel);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int GSSpnmin = 0;&#xa;    int GSSpnmax = 1000;&#xa;    int GSSpnstep = 1;&#xa;    int GSSpninitValue = 0;&#xa;    SpinnerModel GSSpnmodel = new SpinnerNumberModel(GSSpninitValue, GSSpnmin, GSSpnmax, GSSpnstep);&#xa;GSSpn = new JSpinner(GSSpnmodel);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JSpinner" name="AssistsSpn">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int ASpnmin = 0;&#xa;    int ASpnmax = 1000;&#xa;    int Aspnstep = 5;&#xa;    int AspninitValue = 50;&#xa;    SpinnerModel ASpnmodel = new SpinnerNumberModel(AspninitValue, ASpnmin, ASpnmax, Aspnstep);&#xa;AssistsSpn = new JSpinner(ASpnmodel);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int ASpnmin = 0;&#xa;    int ASpnmax = 1000;&#xa;    int Aspnstep = 1;&#xa;    int AspninitValue = 0;&#xa;    SpinnerModel ASpnmodel = new SpinnerNumberModel(AspninitValue, ASpnmin, ASpnmax, Aspnstep);&#xa;AssistsSpn = new JSpinner(ASpnmodel);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JSpinner" name="SavePercentageSpn">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int SPSpnmin = 0;&#xa;    int SPSpnmax = 100;&#xa;    int SPSpnstep = 5;&#xa;    int SPSpninitValue = 50;&#xa;   SpinnerModel SPSpnmodel = new SpinnerNumberModel(SPSpninitValue, SPSpnmin, SPSpnmax, SPSpnstep);&#xa;SavePercentageSpn = new JSpinner(SPSpnmodel);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int SPSpnmin = 0;&#xa;    int SPSpnmax = 100;&#xa;    int SPSpnstep = 1;&#xa;    int SPSpninitValue = 50;&#xa;   SpinnerModel SPSpnmodel = new SpinnerNumberModel(SPSpninitValue, SPSpnmin, SPSpnmax, SPSpnstep);&#xa;SavePercentageSpn = new JSpinner(SPSpnmodel);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="GAATxt">
@@ -451,6 +452,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="DeleteIdLabel">
           <Properties>
@@ -475,10 +479,10 @@
                   <Component id="ListSP" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="Loadbtn" max="32767" attributes="0"/>
+                      <Component id="Savebtn" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="217" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -487,9 +491,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="Savebtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="Loadbtn" min="-2" max="-2" attributes="0"/>
               </Group>
               <Component id="ListSP" pref="150" max="32767" attributes="0"/>
               <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
@@ -497,30 +501,24 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="Loadbtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Load"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="Savebtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
+            <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="ListSP">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="ListList">
+            <Component class="javax.swing.JList" name="OutputHPList">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                    <StringItem index="4" value="Item 5"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
               <AuxValues>

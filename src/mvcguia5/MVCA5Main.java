@@ -15,7 +15,13 @@ public class MVCA5Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+                 MCVGui UI = new MCVGui();
+		UI.setVisible(true);
+		
+		Controller controller = new Controller();
+		
+		UI.addController(controller);  // register controller with view
+		controller.addUI(UI);			// register view with controller
     }
     
 }

@@ -5,16 +5,20 @@
  */
 package mvcguia5;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import mvcguia5.objects.HockeyPlayer;
 
 /**
  *
  * @author chartrand-e35
  */
 public class MCVGui extends javax.swing.JFrame {
-
+private Controller c;		// pointer to the controller
+protected DefaultListModel HPListModel = new DefaultListModel();
     /**
      * Creates new form MCVGui
      */
@@ -70,10 +74,10 @@ public class MCVGui extends javax.swing.JFrame {
         DeleteButton = new javax.swing.JButton();
         DeleteIdLabel = new javax.swing.JLabel();
         OutputPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Loadbtn = new javax.swing.JButton();
+        Savebtn = new javax.swing.JButton();
         ListSP = new javax.swing.JScrollPane();
-        ListList = new javax.swing.JList<>();
+        OutputHPList = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         PatientDetailsTextArea = new javax.swing.JTextArea();
 
@@ -82,7 +86,7 @@ public class MCVGui extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         InputPanel.setBackground(new java.awt.Color(255, 0, 0));
-        InputPanel.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        InputPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         InputPanel.setForeground(new java.awt.Color(255, 0, 0));
         InputPanel.setPreferredSize(new java.awt.Dimension(448, 180));
 
@@ -105,6 +109,11 @@ public class MCVGui extends javax.swing.JFrame {
         GoPLabel.setText("Goalie or Player:");
 
         GoPCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Player", "Goalie" }));
+        GoPCmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoPCmbActionPerformed(evt);
+            }
+        });
 
         PositionCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Center", "Right Wing", "Left Wing", "Defence" }));
         PositionCmb.addActionListener(new java.awt.event.ActionListener() {
@@ -115,21 +124,21 @@ public class MCVGui extends javax.swing.JFrame {
 
         int GSSpnmin = 0;
         int GSSpnmax = 1000;
-        int GSSpnstep = 5;
-        int GSSpninitValue = 50;
+        int GSSpnstep = 1;
+        int GSSpninitValue = 0;
         SpinnerModel GSSpnmodel = new SpinnerNumberModel(GSSpninitValue, GSSpnmin, GSSpnmax, GSSpnstep);
         GSSpn = new JSpinner(GSSpnmodel);
 
         int ASpnmin = 0;
         int ASpnmax = 1000;
-        int Aspnstep = 5;
-        int AspninitValue = 50;
+        int Aspnstep = 1;
+        int AspninitValue = 0;
         SpinnerModel ASpnmodel = new SpinnerNumberModel(AspninitValue, ASpnmin, ASpnmax, Aspnstep);
         AssistsSpn = new JSpinner(ASpnmodel);
 
         int SPSpnmin = 0;
         int SPSpnmax = 100;
-        int SPSpnstep = 5;
+        int SPSpnstep = 1;
         int SPSpninitValue = 50;
         SpinnerModel SPSpnmodel = new SpinnerNumberModel(SPSpninitValue, SPSpnmin, SPSpnmax, SPSpnstep);
         SavePercentageSpn = new JSpinner(SPSpnmodel);
@@ -187,6 +196,11 @@ public class MCVGui extends javax.swing.JFrame {
         });
 
         DeleteButton.setText("Delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
 
         DeleteIdLabel.setText("Id of Delete:");
 
@@ -206,7 +220,7 @@ public class MCVGui extends javax.swing.JFrame {
                         .addComponent(AssistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SavePercentageLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(GAALabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(InputPanelLayout.createSequentialGroup()
@@ -238,16 +252,15 @@ public class MCVGui extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(WeightSpn)
-                                    .addComponent(WeightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(WeightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(InputPanelLayout.createSequentialGroup()
                                 .addComponent(AssistsSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SavePercentageSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SavePercentageSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(GAATxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(InputPanelLayout.createSequentialGroup()
@@ -270,9 +283,8 @@ public class MCVGui extends javax.swing.JFrame {
                                 .addComponent(IdDeleteSpn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(DeleteButton))
-                            .addComponent(DeleteIdLabel))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(DeleteIdLabel))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         InputPanelLayout.setVerticalGroup(
             InputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,18 +341,13 @@ public class MCVGui extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        OutputPanel.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        OutputPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("jButton1");
+        Loadbtn.setText("Load");
 
-        jButton2.setText("jButton2");
+        Savebtn.setText("Save");
 
-        ListList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        ListSP.setViewportView(ListList);
+        ListSP.setViewportView(OutputHPList);
 
         PatientDetailsTextArea.setColumns(20);
         PatientDetailsTextArea.setRows(5);
@@ -354,18 +361,18 @@ public class MCVGui extends javax.swing.JFrame {
                 .addComponent(ListSP, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(OutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Loadbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Savebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         OutputPanelLayout.setVerticalGroup(
             OutputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OutputPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(Savebtn)
                 .addGap(2, 2, 2)
-                .addComponent(jButton1))
+                .addComponent(Loadbtn))
             .addComponent(ListSP, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
         );
@@ -386,7 +393,7 @@ public class MCVGui extends javax.swing.JFrame {
                 .addComponent(InputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(OutputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addContainerGap())
         );
 
         pack();
@@ -401,11 +408,24 @@ public class MCVGui extends javax.swing.JFrame {
     }//GEN-LAST:event_PositionCmbActionPerformed
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-        // TODO add your handling code here:
+    if(GoPCmb.getSelectedItem().toString() == "Player"){
+    int h = (int) HeightSpn.getValue();  
+    int w = (int) WeightSpn.getValue(); 
+    int goals = (int) GSSpn.getValue(); 
+    int a = (int) AssistsSpn.getValue();
+    String fn = FirstNameTxt.getText();
+    String ln = LastNameTxt.getText();
+    String positon = PositionCmb.getSelectedItem().toString();
+   c.PlayerSubmitted(fn, ln, positon, h, w, goals, a);
+    }
+   
+        
+        
+     resetInputs();
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
-        // TODO add your handling code here:
+     resetInputs();
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void PropChangeCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PropChangeCmbActionPerformed
@@ -426,18 +446,142 @@ public class MCVGui extends javax.swing.JFrame {
       DeleteButton.setEnabled(false);
       AssistsSpn.setEnabled(true);
       ClearButton.setEnabled(true);
-      DeleteButton.setEnabled(true);
+      DeleteButton.setEnabled(false);
+      FirstNameTxt.setEnabled(true);
       FirstNameTxt.setEnabled(true);
       GAATxt.setEnabled(true);
       GSSpn.setEnabled(true);
-      GoPCmb.setEnabled(false);
+      GoPCmb.setEnabled(true);
       HeightSpn.setEnabled(true);
       WeightSpn.setEnabled(true);
       PositionCmb.setEnabled(true);
-      SavePercentageLabel.setEnabled(true);
+      SavePercentageSpn.setEnabled(true);
+       SubmitButton.setEnabled(true);
       }
+      else if(SelectOperationCmb.getSelectedItem().toString()=="Edit"){
+      PropChangeCmb.setEnabled(true);
+      IdEditSpn.setEnabled(true);
+      NewValue.setEnabled(true);
+      EditButton.setEnabled(true);
+      IdDeleteSpn.setEnabled(false);
+      DeleteButton.setEnabled(false);
+      AssistsSpn.setEnabled(false);
+      ClearButton.setEnabled(false);
+      DeleteButton.setEnabled(false);
+      FirstNameTxt.setEnabled(false);
+      LastNameTxt.setEnabled(false);
+      GAATxt.setEnabled(false);
+      GSSpn.setEnabled(false);
+      GoPCmb.setEnabled(false);
+      HeightSpn.setEnabled(false);
+      WeightSpn.setEnabled(false);
+      PositionCmb.setEnabled(false);
+      SavePercentageSpn.setEnabled(false); 
+       SubmitButton.setEnabled(false);
+      }
+      else if (SelectOperationCmb.getSelectedItem().toString() == "Delete"){
+          
+       PropChangeCmb.setEnabled(false);
+      IdEditSpn.setEnabled(false);
+      NewValue.setEnabled(false);
+      EditButton.setEnabled(false);
+      DeleteButton.setEnabled(true);
+      IdDeleteSpn.setEnabled(true); 
+      AssistsSpn.setEnabled(false);
+      ClearButton.setEnabled(false);
+      FirstNameTxt.setEnabled(false);
+      LastNameTxt.setEnabled(false);
+      GAATxt.setEnabled(false);
+      GSSpn.setEnabled(false);
+      GoPCmb.setEnabled(false);
+      HeightSpn.setEnabled(false);
+      WeightSpn.setEnabled(false);
+      PositionCmb.setEnabled(false);
+      SavePercentageSpn.setEnabled(false);    
+        SubmitButton.setEnabled(false);  
+      }
+      else if(SelectOperationCmb.getSelectedItem().toString() == "Select One"){
+      PropChangeCmb.setEnabled(false);
+      IdEditSpn.setEnabled(false);
+      NewValue.setEnabled(false);
+      EditButton.setEnabled(false);
+      IdDeleteSpn.setEnabled(false);
+      DeleteButton.setEnabled(false);
+      AssistsSpn.setEnabled(false);
+      ClearButton.setEnabled(false);
+      DeleteButton.setEnabled(false);
+      FirstNameTxt.setEnabled(false);
+      LastNameTxt.setEnabled(false);
+      GAATxt.setEnabled(false);
+      GSSpn.setEnabled(false);
+      GoPCmb.setEnabled(false);
+      HeightSpn.setEnabled(false);
+      WeightSpn.setEnabled(false);
+      PositionCmb.setEnabled(false);
+      SavePercentageSpn.setEnabled(false);
+      SubmitButton.setEnabled(false);
+      }    
     }//GEN-LAST:event_SelectOperationCmbActionPerformed
 
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
+    private void GoPCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoPCmbActionPerformed
+      if(GoPCmb.getSelectedItem().toString() == "Goalie"){
+       SavePercentageSpn.setEnabled(true);
+       GAATxt.setEnabled(true);
+       PositionCmb.setEnabled(false);
+       AssistsSpn.setEnabled(false);
+       GSSpn.setEnabled(false);
+      }
+       else if(GoPCmb.getSelectedItem().toString() == "Player"){
+       SavePercentageSpn.setEnabled(false);
+       GAATxt.setEnabled(false);
+       PositionCmb.setEnabled(true);
+       AssistsSpn.setEnabled(true);
+       GSSpn.setEnabled(true);    
+               }
+       else{
+          SavePercentageSpn.setEnabled(false);
+       GAATxt.setEnabled(false);
+       PositionCmb.setEnabled(false);
+       AssistsSpn.setEnabled(false);
+       GSSpn.setEnabled(false); 
+       }
+           
+    }//GEN-LAST:event_GoPCmbActionPerformed
+
+    private void resetInputs(){
+        IdEditSpn.setValue(0);
+        IdDeleteSpn.setValue(0);
+        AssistsSpn.setValue(0);
+        GSSpn.setValue(0);
+        HeightSpn.setValue(0);
+        WeightSpn.setValue(0);
+        SavePercentageSpn.setValue(50);
+        NewValue.setValue(0);
+        GAATxt.setText("");
+        FirstNameTxt.setText("");
+        LastNameTxt.setText("");
+        PositionCmb.setSelectedIndex(0);
+        GoPCmb.setSelectedIndex(0);
+        PropChangeCmb.setSelectedIndex(0);
+    }
+    
+    protected void addController(Controller c){
+		
+		this.c = c;
+	} // end addController
+    
+    protected void loadHPListModel(ArrayList<HockeyPlayer> list){
+		for(HockeyPlayer p: list)
+			HPListModel.addElement(p);
+		
+		
+		c.loadListButtonClicked(list.get(list.size() - 1));
+		
+	} // end loadPatientListModel
     /**
      * @param args the command line arguments
      */
@@ -496,10 +640,11 @@ public class MCVGui extends javax.swing.JFrame {
     private javax.swing.JPanel InputPanel;
     private javax.swing.JLabel LastNameLabel;
     private javax.swing.JTextField LastNameTxt;
-    private javax.swing.JList<String> ListList;
     private javax.swing.JScrollPane ListSP;
+    private javax.swing.JButton Loadbtn;
     private javax.swing.JSpinner NewValue;
     private javax.swing.JLabel NewValueLabel;
+    private javax.swing.JList<String> OutputHPList;
     private javax.swing.JPanel OutputPanel;
     private javax.swing.JTextArea PatientDetailsTextArea;
     private javax.swing.JComboBox<String> PositionCmb;
@@ -508,13 +653,12 @@ public class MCVGui extends javax.swing.JFrame {
     private javax.swing.JLabel PropSelectLabel;
     private javax.swing.JLabel SavePercentageLabel;
     private javax.swing.JSpinner SavePercentageSpn;
+    private javax.swing.JButton Savebtn;
     private javax.swing.JComboBox<String> SelectOperationCmb;
     private javax.swing.JButton SubmitButton;
     private javax.swing.JLabel WeightLabel;
     private javax.swing.JSpinner WeightSpn;
     private javax.swing.JLabel enterinfolabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
